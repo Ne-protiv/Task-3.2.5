@@ -1,13 +1,12 @@
 public class Task {
     public static void main(String[] args) {
-        Car audi = new Car();
-        try {
+        try (Car audi = new Car()) {
             audi.drive();
-        } catch (RuntimeException ignored) {
         }
+        catch (RuntimeException ignored) {}
     }
 
-    static class Car {
+    static class Car implements AutoCloseable {
         public void drive() {
             System.out.println("Машина поехала.");
         }
